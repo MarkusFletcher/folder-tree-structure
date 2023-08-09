@@ -3,7 +3,7 @@
 ## Установка
 1. Склонируйте этот репозиторий и перейдите в папку проекта
 ```bash
-   git clone https://github.com/your-username/folder-tree-structure.git
+   git clone https://github.com/MarkusFletcher/folder-tree-structure.git
    cd folder-tree-structure
 ```
 2. Установите зависимости

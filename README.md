@@ -4,6 +4,8 @@
 1. Склонируйте этот репозиторий и перейдите в папку проекта
 ```bash
    git clone https://github.com/MarkusFletcher/folder-tree-structure.git
+```
+```bash
    cd folder-tree-structure
 ```
 2. Установите зависимости

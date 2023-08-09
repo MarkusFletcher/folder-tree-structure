@@ -82,6 +82,9 @@ body {
 		.folder-tree__list-file {
 			padding-left: 14px;
 			margin-left: 18px;
+			&:last-child {
+				padding-left: 15px;
+			}
 		}
 	}
 

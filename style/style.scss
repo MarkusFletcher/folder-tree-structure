@@ -1,0 +1,207 @@
+:root {
+	--font-color: rgba(255, 255, 255, 0.87);
+	--backgrond-color: #242424;
+
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+
+	color-scheme: light dark;
+	color: var(--font-color);
+	background-color: var(--backgrond-color);
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	min-width: 320px;
+	min-height: 100vh;
+}
+
+.example-container {
+	max-width: 1000px;
+	margin-inline: auto;
+	padding: 2rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.folder-tree {
+	--tree-lines-color: rgba(255, 255, 255, 0.87);
+
+	padding-left: 10px;
+
+	&__list {
+		list-style-type: none;
+		padding-left: 0;
+	}
+
+	&__list-file {
+		position: relative;
+		padding-left: 15px;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+		}
+		&:not(:last-child) {
+			border-left: 1px dotted var(--tree-lines-color);
+			&::before {
+				top: 50%;
+				height: 1px;
+				width: 10px;
+				border-bottom: 1px dotted var(--tree-lines-color);
+			}
+		}
+		&:last-child {
+			&::before {
+				top: 0;
+				height: 50%;
+				width: 10px;
+				border: 1px dotted var(--tree-lines-color);
+				border-width: 0 0 1px 1px;
+			}
+		}
+	}
+
+	&__folder {
+		border-left: 1px dotted var(--tree-lines-color);
+
+		// для подпапок
+		.folder-tree__list-folder {
+			padding-left: 18px;
+		}
+
+		// для файлов, лежащих в папке
+		.folder-tree__list-file {
+			padding-left: 14px;
+			margin-left: 18px;
+		}
+	}
+
+	&__folder-title {
+		display: inline-block;
+		cursor: pointer;
+		position: relative;
+		padding-left: 33px;
+
+		&::marker,
+		&::-webkit-details-marker {
+			display: none;
+		}
+
+		&::before,
+		&::after {
+			position: absolute;
+			content: '';
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+
+		// иконка +/-
+		&::before {
+			height: 8px;
+			width: 8px;
+			background-image: url(/icons/plus.svg);
+			background-size: 5px;
+			background-position: center;
+			background-color: var(--backgrond-color);
+			border: 1px solid var(--tree-lines-color);
+			top: 8px;
+			left: -5px;
+		}
+
+		// иконка папки
+		&::after {
+			height: 12px;
+			width: 16px;
+			background-image: url(/icons/folder.svg);
+			top: 6px;
+			left: 13px;
+		}
+	}
+
+	// смена иконки при открытии папки
+	&__folder[open] {
+		& > .folder-tree__folder-title {
+			// иконка папки
+			&::after {
+				background-image: url(/icons/folder_open.svg);
+			}
+
+			// иконка +/-
+			&::before {
+				background-image: url(/icons/minus.svg);
+			}
+		}
+	}
+
+	&__file-title {
+		position: relative;
+		padding-left: 19px;
+
+		// иконка файла
+		&::after {
+			position: absolute;
+			content: '';
+			background-size: contain;
+			background-repeat: no-repeat;
+			height: 13px;
+			width: 10px;
+			background-image: url(/icons/file.svg);
+			top: 5px;
+			left: 0;
+		}
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--font-color: #213547;
+		--backgrond-color: #e9f1fa;
+	}
+
+	.folder-tree {
+		--tree-lines-color: #213547;
+
+		&__folder-title {
+			// иконка папки
+			&::after {
+				background-image: url(/icons/folder_black.svg);
+			}
+
+			// иконка +/-
+			&::before {
+				background-image: url(/icons/plus_black.svg);
+			}
+		}
+
+		// смена иконки при открытии папки
+		&__folder[open] {
+			& > .folder-tree__folder-title {
+				// иконка папки
+				&::after {
+					background-image: url(/icons/folder_open_black.svg);
+				}
+
+				// иконка +/-
+				&::before {
+					background-image: url(/icons/minus_black.svg);
+				}
+			}
+		}
+
+		// иконка файла
+		&__file-title {
+			&::after {
+				background-image: url(/icons/file_black.svg);
+			}
+		}
+	}
+}
